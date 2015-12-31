@@ -80,3 +80,21 @@ mvn archetype:generate -DgroupId=org.sunny \
 mvn archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-quickstart -DgroupId=org.sunny -DartifactId=hello-world-maven -Dversion=1.0-SNAPSHOT -DinteractiveMode=false
 
 mvn archetype:generate -DgroupId=org.sunny -DartifactId=hello-world-maven -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+
+For uber jar:
+
+<plugin>
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-surefire-plugin</artifactId>
+	<version>2.18.1</version>
+	<configuration>
+	  <useFile>false</useFile>
+	  <disableXmlReport>true</disableXmlReport>
+	  <!-- If you have classpath issue like NoDefClassError,... -->
+	  <!-- useManifestOnlyJar>false</useManifestOnlyJar -->
+	  <includes>
+	    <include>**/*Test.*</include>
+	    <include>**/*Suite.*</include>
+	  </includes>
+	</configuration>
+</plugin>
